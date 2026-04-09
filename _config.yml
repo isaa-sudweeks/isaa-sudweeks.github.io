@@ -1,0 +1,15 @@
+title: Isaac Sudweeks
+description: Research notes on machine learning, robotics, and simulation
+theme: minima
+markdown: kramdown
+permalink: /:categories/:title/
+
+kramdown:
+  math_engine: mathjax
+  input: GFM
+
+minima:
+  social_links:
+    - title: GitHub
+      icon: github
+      url: https://github.com/isaa-sudweeks
