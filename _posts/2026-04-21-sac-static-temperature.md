@@ -18,7 +18,7 @@ The authors of this paper aim to solve the two problems stated above by extendin
 ## Problem Setup
 
 ### General Robotic Control Problem Setup 
-In this paper they consider the classic robotic control setup, which is as follows. Consider the infinite-horizon Markov Decision Process (MDP) characterized by the tuple $(\mathcal{S}, \mathcal{A}, \mathcal{T}, \mathcal{R},\gamma,p_{0})$, where $\mathcal{S}\in \mathbb{R}^n$ and $\mathcal{A}\in\mathbb{R}^m$ are continuous state and action spaces. $\mathcal{T}: \mathcal{S} \times \mathcal{A}\times\mathcal{S} \to \mathbb{R}_{+}$ is the transition function between an observation and the next observation given some action. $\mathcal{R}: \mathcal{S}\times\mathcal{A} \to \mathbb{R}$ is a reward function, $\gamma \in[0,1)$ is a discount factor, and $p_{0}$ is some initial state distribution. The model from the paper aims to learn a parameterized mapping $\Pi_{\theta}: \mathcal{S} \to \mathcal{A}$ with parameters $\theta$ such that the discounted return is maximized along a trajectory. 
+In this paper they consider the classic robotic control setup, which is as follows. Consider the infinite-horizon Markov Decision Process (MDP) characterized by the tuple <script type="math/tex">(\mathcal{S}, \mathcal{A}, \mathcal{T}, \mathcal{R},\gamma,p_{0})</script>, where <script type="math/tex">\mathcal{S}\in \mathbb{R}^n</script> and <script type="math/tex">\mathcal{A}\in\mathbb{R}^m</script> are continuous state and action spaces. <script type="math/tex">\mathcal{T}: \mathcal{S} \times \mathcal{A}\times\mathcal{S} \to \mathbb{R}_{+}</script> is the transition function between an observation and the next observation given some action. <script type="math/tex">\mathcal{R}: \mathcal{S}\times\mathcal{A} \to \mathbb{R}</script> is a reward function, <script type="math/tex">\gamma \in[0,1)</script> is a discount factor, and <script type="math/tex">p_{0}</script> is some initial state distribution. The model from the paper aims to learn a parameterized mapping <script type="math/tex">\Pi_{\theta}: \mathcal{S} \to \mathcal{A}</script> with parameters <script type="math/tex">\theta</script> such that the discounted return is maximized along a trajectory. 
 
 ## Method
 The authors of this paper use function approximations (neural networks) for both the Q-function and the policy. Instead of running evaluation and improvement to convergence they alternate between optimizing both networks with stochastic gradient decent. 
@@ -26,27 +26,27 @@ The authors of this paper use function approximations (neural networks) for both
 ### Policy
 One of the main ideas of the maximum entropy definition as defined in the SAC paper is that the policy jointly optimizes both the cumulative reward over time and the randomness of each action. The objective of the policy is then mathematically defined as:
 
-$$
+<script type="math/tex; mode=display">
 J(\pi) = \sum_{t=0}^{T} \mathbb{E}_{(s_t, a_t) \sim \rho_\pi} \left[ r(s_t, a_t) + \alpha \mathcal{H} \big( \pi(\cdot \mid s_t) \big) \right].
-$$
+</script>
 
-where $r$ is the critic or value network sometimes called Q and $\alpha$ is the temperature, and $\mathcal{H}$ is the entropy of the policy. 
+where <script type="math/tex">r</script> is the critic or value network sometimes called Q and <script type="math/tex">\alpha</script> is the temperature, and <script type="math/tex">\mathcal{H}</script> is the entropy of the policy. 
 
 ### Q-network Value & Soft value 
 They implement Q networks using an ensamble of two MLPs. They train each of these MLPs independently and use the minimum value of the two for policy updates which minimize the optimism that Q-networks sometimes display. The networks are trained to minimize the following function:
-$$
+<script type="math/tex; mode=display">
 J_Q(\theta) = \mathbb{E}_{(s_t, a_t) \sim \mathcal{D}} \left[ \frac{1}{2} \left( Q_\theta(s_t, a_t) - \hat{Q}(s_t, a_t) \right)^2 \right]
-$$
+</script>
 In the original paper it was noted that instead of computing the soft value of an action (The value of the action plus its randomness) from the value function itself it was stated that in practice it seemed more stable to instantiate another network to predict this value. This network is trained with the following objective function. 
 
-$$
+<script type="math/tex; mode=display">
 J_V(\psi) = \mathbb{E}_{s \sim \mathcal{D}} \left[ \frac{1}{2} \left( V_\psi(s) - \mathbb{E}_{a \sim \pi_\phi(\cdot \mid s)} \big[ Q_\theta(s,a) - \alpha \log \pi_\phi(a \mid s) \big] \right)^2 \right]
-$$
+</script>
 In more modern implementations this is just computed using the following equation:
 
-$$
+<script type="math/tex; mode=display">
 V(s') \approx Q(s', a') - \alpha \log \pi(a' \mid s'), \quad a' \sim \pi
-$$
+</script>
 
 ## Results
 The results show that SAC not only has higher sample efficiency, but it seems to also have better asymptotical performance than many on and off policy models. It also is more robust to hyperparameters, but does require extensive tuning of the models temperature. The figure below was adapted from the SAC paper.
