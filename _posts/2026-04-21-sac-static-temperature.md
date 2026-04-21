@@ -8,7 +8,7 @@ tags:
 ---
 
 # Summary
-RL methods and the ability of neural networks to approximate function have the potential to automate a wide range of decision making and control processes. Unfortunately they have been hampered by two main problems. 1. Model-free deep RL methods have high sample complexity. This means that even simple tasks may need millions of steps of sample collection, and complex high dimensional tasks might need even more.They are also brittle with respect to their hyper parameters requiring extensive tuning of hyper parameters to achieve good performance. The soft actor critic algorithm aims to solve these problems. Which it does in some ways, but I think that these two problems are still the main ones being solved in this feild. For example the [[TD-MPC]] and TD-MPC2 algorithms both claim to solve problems that are very similar to the ones stated in this paper.
+RL methods and the ability of neural networks to approximate function have the potential to automate a wide range of decision making and control processes. Unfortunately they have been hampered by two main problems. 1. Model-free deep RL methods have high sample complexity. This means that even simple tasks may need millions of steps of sample collection, and complex high dimensional tasks might need even more.They are also brittle with respect to their hyper parameters requiring extensive tuning of hyper parameters to achieve good performance. The soft actor critic algorithm aims to solve these problems. Which it does in some ways, but I think that these two problems are still the main ones being solved in this feild. For example the [TD-MPC]({% post_url 2026-04-10-summary %}) and TD-MPC2 algorithms both claim to solve problems that are very similar to the ones stated in this paper.
 
 The paper claims that one of the reasons that there is such high sample complexity is because many previous algorithms used on-policy learning which is less sample efficient because it effectively throws away past data. This motivated their use of an off-policy learning algorithm.
 
@@ -26,7 +26,9 @@ The authors of this paper use function approximations (neural networks) for both
 ### Policy
 One of the main ideas of the maximum entropy definition as defined in the SAC paper is that the policy jointly optimizes both the cumulative reward over time and the randomness of each action. The objective of the policy is then mathematically defined as:
 
-$$J(\pi) = \sum_{t=0}^{T} \mathbb{E}{(s_t, a_t)_{ \sim \rho_\pi}} \left[ r(s_t, a_t) + \alpha \mathcal{H} \big( \pi(\cdot \mid s_t) \big) \right].$$
+$$
+J(\pi) = \sum_{t=0}^{T} \mathbb{E}_{(s_t, a_t) \sim \rho_\pi} \left[ r(s_t, a_t) + \alpha \mathcal{H} \big( \pi(\cdot \mid s_t) \big) \right].
+$$
 
 where $r$ is the critic or value network sometimes called Q and $\alpha$ is the temperature, and $\mathcal{H}$ is the entropy of the policy. 
 
@@ -38,11 +40,13 @@ $$
 In the original paper it was noted that instead of computing the soft value of an action (The value of the action plus its randomness) from the value function itself it was stated that in practice it seemed more stable to instantiate another network to predict this value. This network is trained with the following objective function. 
 
 $$
- J_V(\psi) = \mathbb{E}_{s \sim \mathcal{D}} \left[ \frac{1}{2} \left( V\psi(s) - \mathbb{E}{a \sim \pi\phi(\cdot|s)} \big[ Q_\theta(s,a) - \alpha \log \pi_\phi(a|s) \big] \right)^2 \right]
+J_V(\psi) = \mathbb{E}_{s \sim \mathcal{D}} \left[ \frac{1}{2} \left( V_\psi(s) - \mathbb{E}_{a \sim \pi_\phi(\cdot \mid s)} \big[ Q_\theta(s,a) - \alpha \log \pi_\phi(a \mid s) \big] \right)^2 \right]
 $$
 In more modern implementations this is just computed using the following equation:
 
-$$V(s’)\approx Q(s',a') - \alpha \log \pi(a'|s'),\space a' \sim \pi$$  
+$$
+V(s') \approx Q(s', a') - \alpha \log \pi(a' \mid s'), \quad a' \sim \pi
+$$
 
 ## Results
 The results show that SAC not only has higher sample efficiency, but it seems to also have better asymptotical performance than many on and off policy models. It also is more robust to hyperparameters, but does require extensive tuning of the models temperature. The figure below was adapted from the SAC paper.
@@ -66,7 +70,7 @@ The results show that SAC not only has higher sample efficiency, but it seems to
 # Connections
 
 ## Related Work
-- TD-MPC and TD-MPC2 both use the maximum entropy framework which is formulated in much the same way. 
+- [TD-MPC]({% post_url 2026-04-10-summary %}) and TD-MPC2 both use the maximum entropy framework which is formulated in much the same way. 
 - There have been newer editions to SAC that fix some of the problem including the temperature tuning problem. 
 
 ## My Thoughts
