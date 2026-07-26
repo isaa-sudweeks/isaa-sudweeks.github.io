@@ -1,0 +1,107 @@
+<!doctype html>
+<html lang="{{ page.lang | default: site.lang | default: 'en' }}">
+  {%- include head.html -%}
+  <body>
+    {%- include header.html -%}
+
+    <main class="home-shell" aria-label="Content">
+      <section class="hero">
+        <div class="hero-copy">
+          <p class="eyebrow"><span class="status-dot" aria-hidden="true"></span> Researcher · Engineer · Builder</p>
+          <h1>I build intelligent systems that learn, move, and adapt.</h1>
+          <p class="hero-lede">
+            I’m Isaac Sudweeks. My work lives at the intersection of robotics,
+            reinforcement learning, control, and simulation.
+          </p>
+          <div class="hero-actions">
+            <a class="button button-primary" href="#notes">Explore my research <span aria-hidden="true">↘</span></a>
+            <a class="button button-quiet" href="{{ '/about/' | relative_url }}">More about me</a>
+          </div>
+        </div>
+
+        <div class="hero-visual" aria-hidden="true">
+          <div class="orbit orbit-one"></div>
+          <div class="orbit orbit-two"></div>
+          <div class="node node-one"></div>
+          <div class="node node-two"></div>
+          <div class="node node-three"></div>
+          <div class="node node-four"></div>
+          <div class="signal-card">
+            <span class="signal-label">CURRENT SIGNAL</span>
+            <span class="signal-value">LEARN → TEST → BUILD</span>
+          </div>
+        </div>
+      </section>
+
+      <section class="focus-grid" aria-labelledby="focus-title">
+        <div class="section-intro">
+          <p class="section-index">01 / FOCUS</p>
+          <h2 id="focus-title">What I’m exploring</h2>
+        </div>
+        <div class="focus-list">
+          <article class="focus-item">
+            <span class="focus-number">01</span>
+            <div>
+              <h3>Learning &amp; control</h3>
+              <p>Reinforcement learning methods for systems that have to make useful decisions in the physical world.</p>
+            </div>
+          </article>
+          <article class="focus-item">
+            <span class="focus-number">02</span>
+            <div>
+              <h3>Robotic systems</h3>
+              <p>Embodied intelligence, unusual robot morphologies, and the mechanics that make motion possible.</p>
+            </div>
+          </article>
+          <article class="focus-item">
+            <span class="focus-number">03</span>
+            <div>
+              <h3>Simulation as a tool</h3>
+              <p>Fast, differentiable, and scientifically grounded environments for asking better research questions.</p>
+            </div>
+          </article>
+        </div>
+      </section>
+
+      <section class="notes-section" id="notes" aria-labelledby="notes-title">
+        <div class="section-intro notes-heading">
+          <div>
+            <p class="section-index">02 / NOTEBOOK</p>
+            <h2 id="notes-title">Research, in progress</h2>
+          </div>
+          <p class="section-note">Working notes, experiments, paper breakdowns, and ideas—kept close to the actual process.</p>
+        </div>
+
+        <div class="post-grid">
+          {%- for post in site.posts -%}
+          <article class="post-card">
+            <a class="post-card-link" href="{{ post.url | relative_url }}">
+              <div class="post-meta">
+                <time datetime="{{ post.date | date_to_xmlschema }}">{{ post.date | date: "%b %d, %Y" }}</time>
+                <span>{{ post.categories | first | default: "Research note" }}</span>
+              </div>
+              <h3>{{ post.title | escape }}</h3>
+              {%- if post.excerpt -%}
+              <p>{{ post.excerpt | strip_html | normalize_whitespace | truncate: 155 }}</p>
+              {%- endif -%}
+              <span class="read-link">Read note <span aria-hidden="true">↗</span></span>
+            </a>
+          </article>
+          {%- endfor -%}
+        </div>
+      </section>
+
+      <section class="contact-strip">
+        <p class="section-index">03 / CONNECT</p>
+        <div>
+          <h2>Interested in similar problems?</h2>
+          <p>Follow the work, read the notes, or take a look at what I’m building.</p>
+        </div>
+        <a class="button button-primary" href="https://github.com/isaa-sudweeks">Find me on GitHub <span aria-hidden="true">↗</span></a>
+      </section>
+    </main>
+
+    {%- include footer.html -%}
+  </body>
+</html>
+

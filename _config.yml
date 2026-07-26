@@ -1,5 +1,7 @@
 title: Isaac Sudweeks
-description: Research notes on machine learning, robotics, and simulation
+description: Researcher and engineer working across robotics, reinforcement learning, control, and simulation.
+author: Isaac Sudweeks
+url: "https://isaacsudweeks.github.io"
 theme: minima
 markdown: kramdown
 permalink: /:categories/:title/
