@@ -14,7 +14,7 @@
             reinforcement learning, control, and simulation.
           </p>
           <div class="hero-actions">
-            <a class="button button-primary" href="#work">Explore my work <span aria-hidden="true">↘</span></a>
+            <a class="button button-primary" href="#projects">Explore my work <span aria-hidden="true">↘</span></a>
             <a class="button button-quiet" href="{{ '/about/' | relative_url }}">More about me</a>
           </div>
         </div>
@@ -33,7 +33,7 @@
         </div>
       </section>
 
-      <section class="focus-grid" id="work" aria-labelledby="focus-title">
+      <section class="focus-grid" aria-labelledby="focus-title">
         <div class="section-intro">
           <p class="section-index">01 / WORK</p>
           <h2 id="focus-title">Problems I care about</h2>
@@ -63,8 +63,122 @@
         </div>
       </section>
 
+      <section class="projects-section" id="projects" aria-labelledby="projects-title">
+        <div class="section-intro projects-heading">
+          <div>
+            <p class="section-index">02 / SELECTED PROJECTS</p>
+            <h2 id="projects-title">Things I’ve built</h2>
+          </div>
+          <p class="section-note">A selection of work across fluid mechanics, autonomous systems, scientific computing, instrumentation, and manufacturing.</p>
+        </div>
+
+        <div class="projects-grid">
+          <article class="project-card project-featured">
+            <div class="project-image">
+              <img src="{{ '/assets/images/projects/river-wave.webp' | relative_url }}" alt="CAD model of a portable river wave machine" loading="lazy">
+              <span class="project-type">Personal project</span>
+            </div>
+            <div class="project-copy">
+              <p class="project-index">01 / FLUID MECHANICS</p>
+              <h3>Portable River-Wave Generator</h3>
+              <p>Developed and validated the proof of concept for a portable structure that forms a surfable standing wave in a river. The design translates open-channel flow principles into a deployable geometry and establishes the foundation for full-scale testing.</p>
+              <ul class="project-tags" aria-label="Project disciplines">
+                <li>Fluid mechanics</li>
+                <li>CAD</li>
+                <li>Prototyping</li>
+              </ul>
+            </div>
+          </article>
+
+          <article class="project-card">
+            <div class="project-image">
+              <img src="{{ '/assets/images/projects/slam-robot.webp' | relative_url }}" alt="Tracked autonomous robot equipped with depth cameras" loading="lazy">
+              <span class="project-type">Personal project</span>
+            </div>
+            <div class="project-copy">
+              <p class="project-index">02 / ROBOTICS</p>
+              <h3>Autonomous SLAM Rover</h3>
+              <p>Designed and built a tracked robot that maps and navigates unfamiliar environments autonomously, combining real-time depth sensing, localization, motion control, and onboard computation.</p>
+              <ul class="project-tags" aria-label="Project technologies">
+                <li>ROS</li>
+                <li>SLAM</li>
+                <li>Jetson</li>
+              </ul>
+            </div>
+          </article>
+
+          <article class="project-card">
+            <div class="project-image project-image-contain">
+              <img src="{{ '/assets/images/projects/isopleths.webp' | relative_url }}" alt="Isopleth visualization of ozone concentration by pollutant levels" loading="lazy">
+              <span class="project-type">Research</span>
+            </div>
+            <div class="project-copy">
+              <p class="project-index">03 / DATA &amp; ML</p>
+              <h3>Atmospheric Response Modeling</h3>
+              <p>Created a statistical and machine-learning workflow that transforms large experimental chemistry datasets into interpretable pollutant-response surfaces, helping reveal how precursor concentrations affect ozone formation.</p>
+              <ul class="project-tags" aria-label="Project technologies">
+                <li>Machine learning</li>
+                <li>Statistics</li>
+                <li>Visualization</li>
+              </ul>
+            </div>
+          </article>
+
+          <article class="project-card">
+            <div class="project-image">
+              <img src="{{ '/assets/images/projects/chemistry-testing-box.webp' | relative_url }}" alt="Atmospheric chemistry testing system with sensors, tubing, and control electronics" loading="lazy">
+              <span class="project-type">Instrumentation</span>
+            </div>
+            <div class="project-copy">
+              <p class="project-index">04 / MECHATRONICS</p>
+              <h3>Automated Atmospheric Testbed</h3>
+              <p>Engineered and validated an automated instrument for continuously measuring atmospheric compounds. The system integrates sensors, fluid routing, solenoid control, data acquisition, power electronics, and a live operator interface.</p>
+              <ul class="project-tags" aria-label="Project technologies">
+                <li>Sensors</li>
+                <li>DAQ</li>
+                <li>GUI</li>
+              </ul>
+            </div>
+          </article>
+
+          <article class="project-card">
+            <div class="project-image">
+              <img src="{{ '/assets/images/projects/webbing-counter.webp' | relative_url }}" alt="Automated industrial webbing measurement and dispensing machine" loading="lazy">
+              <span class="project-type">Industrial automation</span>
+            </div>
+            <div class="project-copy">
+              <p class="project-index">05 / AUTOMATION</p>
+              <h3>Automated Webbing Dispenser</h3>
+              <p>Built a production machine that measures and dispenses precise lengths of webbing automatically, replacing a manual workflow with encoder feedback, embedded control, serial communication, and AC motor actuation.</p>
+              <ul class="project-tags" aria-label="Project technologies">
+                <li>Raspberry Pi</li>
+                <li>Encoders</li>
+                <li>Motor control</li>
+              </ul>
+            </div>
+          </article>
+
+          <article class="project-card">
+            <div class="project-image">
+              <img src="{{ '/assets/images/projects/pipsqueak-engine.webp' | relative_url }}" alt="Small machined air-driven engine assembly" loading="lazy">
+              <span class="project-type">Manufacturing</span>
+            </div>
+            <div class="project-copy">
+              <p class="project-index">06 / DESIGN &amp; BUILD</p>
+              <h3>Air-Powered Pipsqueak Engine</h3>
+              <p>Designed and manufactured a working compressed-air engine across five production methods, adapting individual components for milling, turning, casting, powder metallurgy, and additive manufacturing.</p>
+              <ul class="project-tags" aria-label="Project processes">
+                <li>Machining</li>
+                <li>DFM</li>
+                <li>3D printing</li>
+              </ul>
+            </div>
+          </article>
+        </div>
+      </section>
+
       <section class="contact-strip">
-        <p class="section-index">02 / CONNECT</p>
+        <p class="section-index">03 / CONNECT</p>
         <div>
           <h2>Interested in similar problems?</h2>
           <p>Take a look at what I’m building or get in touch through GitHub.</p>
